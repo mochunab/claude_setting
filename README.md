@@ -224,9 +224,10 @@ IT 기획자 페르소나로 스레드(Threads) 바이럴 글을 자동 생성.
 | Skill | Description |
 |-------|-------------|
 | **nadaunse-taste** | 나다운세 프론트엔드 디자인 품질 스킬 |
-| **trend** | 멀티 플랫폼 트렌드 서칭 |
-| **ui-ux-pro-max** | UI/UX 디자인 인텔리전스 (67 styles, 96 palettes) |
-| **vercel-react-best-practices** | React/Next.js 성능 최적화 가이드라인 |
+| **supanova-design-skill** | 디자인 시스템 출력/리디자인/소프트 스킬 (taste, output, redesign, soft) |
+| **trend** | 멀티 플랫폼 트렌드 서칭 (X, 인스타, 스레드, 틱톡, 유튜브, 레딧) |
+| **ui-ux-pro-max** | UI/UX 디자인 인텔리전스 (67 styles, 96 palettes, 13 stacks) |
+| **vercel-react-best-practices** | React/Next.js 성능 최적화 가이드라인 (Vercel Engineering) |
 
 ---
 
