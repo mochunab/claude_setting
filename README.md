@@ -61,10 +61,16 @@ chmod +x ~/dotfiles/claude/setup-mcp.sh
 ```
 dotfiles/
 ├── claude/
-│   ├── agents/                       # 글로벌 에이전트
+│   ├── agents/                       # 글로벌 에이전트 (모든 프로젝트)
 │   │   ├── content-planner.md
 │   │   ├── feature-planner.md
-│   │   └── growth-strategist.md
+│   │   ├── growth-strategist.md
+│   │   └── nadaunse/                 # 나다운세 전용 에이전트
+│   │       ├── qa-tester.md
+│   │       ├── code-searcher.md
+│   │       ├── edge-function-dev.md
+│   │       ├── ui-reviewer.md
+│   │       └── deploy-checker.md
 │   ├── commands/                     # 커스텀 슬래시 커맨드
 │   │   ├── property.md
 │   │   └── thread.md
@@ -121,14 +127,28 @@ IT 기획자 페르소나로 스레드(Threads) 바이럴 글을 자동 생성.
 
 ### MCP Servers
 
+**글로벌 (모든 프로젝트)**:
+
 | MCP | Description | API Key | Status |
 |-----|-------------|---------|--------|
-| **Firecrawl** | Web scraping & crawling | **Required** | ✅ |
-| **Playwright** | Browser automation | Not required | ✅ |
-| **Supabase** | Database management | **Required** | ✅ |
-| **Sentry** | Error monitoring & AI analysis | OAuth | ✅ |
-| Figma | Design to code | Optional | ⚠️ |
-| Google Sheets | Spreadsheet read/write | Service Account | ⚠️ |
+| **Vercel** | 배포, 프로젝트 관리 | claude.ai 연동 | ✅ |
+| **Figma** | 디자인 to 코드 | claude.ai 연동 | ✅ |
+| **Notion** | 문서 읽기/쓰기 | claude.ai 연동 | ✅ |
+| **Supabase** | DB 관리 (plugin) | claude.ai 연동 | ✅ |
+| **Serena** | LSP 기반 코드 분석 (plugin) | 불필요 | ✅ |
+| **Playwriter** | 브라우저 자동화 (Playwright 래퍼) | 불필요 | ✅ |
+| **Apify Actors** | 웹 크롤링/스크래핑 (인스타, 트렌드 등) | **Required** | ✅ |
+| Gmail | 이메일 | claude.ai 연동 | ⚠️ 인증 필요 |
+| Google Calendar | 캘린더 | claude.ai 연동 | ⚠️ 인증 필요 |
+| Zapier | 자동화 워크플로우 | claude.ai 연동 | ⚠️ 인증 필요 |
+| Canva | 디자인 | claude.ai 연동 | ⚠️ 인증 필요 |
+
+**프로젝트별 (나다운세)**:
+
+| MCP | Description | 설정 위치 |
+|-----|-------------|----------|
+| Playwright | E2E 브라우저 테스트 | 프로젝트 `.claude.json` |
+| Supabase | DB 직접 연결 (access token) | 프로젝트 `.claude.json` |
 
 ### Plugins
 
@@ -149,11 +169,10 @@ IT 기획자 페르소나로 스레드(Threads) 바이럴 글을 자동 생성.
 
 | Service | URL |
 |---------|-----|
-| Firecrawl | https://www.firecrawl.dev/app/api-keys |
+| Apify | https://console.apify.com/account/integrations |
 | Supabase | https://supabase.com/dashboard/account/tokens |
-| Sentry | OAuth (auto-prompted on first use) |
 | Figma | Figma App > Settings > Personal access tokens |
-| Google Sheets | https://console.cloud.google.com/apis/credentials |
+| Vercel/Notion/Gmail 등 | claude.ai 연동 (Settings > Connected apps) |
 
 ---
 
@@ -176,15 +195,27 @@ IT 기획자 페르소나로 스레드(Threads) 바이럴 글을 자동 생성.
 
 ---
 
-## Agents (Global)
+## Agents
 
-All projects에서 사용 가능한 에이전트:
+### 세일즈 에이전트 (Global — 모든 프로젝트)
 
 | Agent | Description | Trigger Keywords |
 |-------|-------------|-----------------|
 | **content-planner** | 바이럴 콘텐츠(글/영상) 기획 — 감정 설계, 훅 카피, 본문 3단 구조, CTA | "콘텐츠 기획", "카피 써줘", "훅 만들어" |
 | **feature-planner** | 바이럴 기능/제품 설계 — 심리 트리거, 공유 루프, 케이스 스터디 매칭 | "기능 기획", "바이럴 기능", "공유 루프" |
 | **growth-strategist** | 사업 성장 전략 — 7대 본능 분석, 5단계 성장 엔진, 전환/잠금 설계 | "사업 전략", "성장 설계", "본능 분석" |
+
+### 개발 에이전트 (나다운세 전용)
+
+> `agents/nadaunse/` 폴더의 파일을 프로젝트의 `.claude/agents/`에 복사해서 사용
+
+| Agent | Description | Trigger Keywords |
+|-------|-------------|-----------------|
+| **qa-tester** | Playwright 기반 실제 브라우저 QA 테스트, E2E 시나리오 점검 | "QA", "테스트", "점검" |
+| **code-searcher** | 72개 컴포넌트, 46개 EF, 55개 페이지 코드 탐색 및 영향도 분석 | "찾아줘", "어디서", "영향도" |
+| **edge-function-dev** | Edge Function 생성/수정/디버깅, Deno·CORS·JWT 규칙 자동 적용 | EF 관련 모든 작업 |
+| **ui-reviewer** | Tailwind v4 규칙, 디자인 시스템 준수 검사, iOS Safari 호환성 리뷰 | "UI 검사", "스타일 리뷰" |
+| **deploy-checker** | 배포 전 빌드 오류, 보안 취약점, 환경변수 누락, DEV 노출 점검 | "배포 전 점검" |
 
 ---
 
