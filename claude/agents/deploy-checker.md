@@ -12,29 +12,27 @@ tools: Read, Glob, Grep, Bash
 ## 검사 항목
 
 ### 1. 빌드 성공 여부
-```bash
-npx vite build
-```
+프로젝트의 빌드 스크립트 확인 후 실행 (package.json의 build 스크립트 또는 프로젝트별 빌드 명령어)
 
 ### 2. 환경변수 하드코딩 검사
-- Supabase Project ID 하드코딩 (`kcthtpmxffppfbkjjkub`, `hyltbeewxaqashyivilu`)
-- API 키 직접 노출
+- API 키, 시크릿 키 직접 노출
+- 프로젝트 ID/URL 하드코딩
 - `.env` 값 소스코드 내 하드코딩
 
 ### 3. DEV 전용 코드 프로덕션 노출
 - `console.log` (디버깅용)
-- `DEV &&` 없이 노출된 테스트 버튼/링크
+- 테스트 버튼/링크 프로덕션 노출
 - `/test/` 경로 프로덕션 접근 가능 여부
 
 ### 4. 보안 점검
 - `error.message` 직접 사용자 노출
-- CORS 화이트리스트 우회
+- CORS 설정 문제
 - 입력값 미검증
 
 ### 5. Git 상태
-- staging 브랜치 기준 확인
+- 현재 브랜치 확인
 - 커밋되지 않은 변경사항 경고
-- production 브랜치에 cherry-pick 대상 커밋 식별
+- 배포 대상 커밋 식별
 
 ## 결과 포맷
 
@@ -51,9 +49,4 @@ npx vite build
 
 ### 통과 (Pass)
 - 검사 통과 항목 목록
-
-### 배포 명령어
-git checkout production
-git cherry-pick <SHA>
-git push
 ```

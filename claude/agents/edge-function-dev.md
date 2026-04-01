@@ -7,7 +7,7 @@ tools: Read, Write, Edit, Glob, Grep, Bash
 
 # Edge Function 개발 에이전트
 
-나다운세 Supabase Edge Function 전문 에이전트.
+Supabase Edge Function 전문 에이전트.
 
 ## 필수 규칙
 
@@ -18,7 +18,6 @@ const corsHeaders = {
   'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
 }
 
-// OPTIONS 핸들링
 if (req.method === 'OPTIONS') {
   return new Response('ok', { headers: corsHeaders })
 }
@@ -27,9 +26,6 @@ if (req.method === 'OPTIONS') {
 ### 환경변수
 - `Deno.env.get('SUPABASE_URL')`, `Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')`
 - 하드코딩 절대 금지
-
-### --no-verify-jwt 필수 함수
-내부 호출/cron 전용: `generate-saju-answer`, `generate-tarot-answer`, `send-alimtalk`, `generate-weekly-report`, `send-report-alimtalk`, `generate-sitemap`, `generate-upsell-mapping`, `generate-nadaum-analysis`, `mind-talk-chat`, `get-failed-reports`
 
 ### 에러 핸들링
 ```ts
@@ -46,14 +42,13 @@ try {
 
 ### 배포
 ```bash
-# 특정 함수
-npx supabase functions deploy <함수명> --project-ref kcthtpmxffppfbkjjkub
+# 프로젝트 ref는 supabase/config.toml 또는 .env에서 확인
+npx supabase functions deploy <함수명> --project-ref $PROJECT_REF
 # JWT 불필요 함수
-npx supabase functions deploy <함수명> --no-verify-jwt --project-ref kcthtpmxffppfbkjjkub
+npx supabase functions deploy <함수명> --no-verify-jwt --project-ref $PROJECT_REF
 ```
 
 ## 작업 전 체크리스트
 1. 기존 함수 구조 확인: `supabase/functions/` 디렉토리
 2. 공유 모듈 확인: `supabase/functions/_shared/`
-3. EDGE_FUNCTIONS_GUIDE.md 참조
-4. 수정 후 TypeScript 타입 체크
+3. 수정 후 TypeScript 타입 체크
