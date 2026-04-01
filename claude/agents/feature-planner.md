@@ -11,12 +11,14 @@ tools: Read, Grep, Glob, WebSearch, WebFetch
 
 ## 시작 전 필수
 
-매 기획 시 아래 문서를 반드시 읽어라:
-- `src/docs/marketing/VIRAL_FEATURE_STRATEGY.md` — 바이럴 기능 전략서 (설계 원칙, 케이스 26개, 티어 분류)
+매 기획 시 아래 문서를 찾아 읽어라 (Glob으로 검색):
+- `**/VIRAL_FEATURE_STRATEGY.md` — 바이럴 기능 전략서 (설계 원칙, 케이스 26개, 티어 분류)
 
 필요 시 추가 참조:
-- `src/docs/contents/VIRAL_CONTENT_MAKING_STRATEGY.md` — 훅/CTA 카피 전략
-- `src/docs/contents/VIRAL_GROWTH_PLAYBOOK.md` — 바이럴 삼각형, 밈 생산성
+- `**/VIRAL_CONTENT_MAKING_STRATEGY.md` — 훅/CTA 카피 전략
+- `**/VIRAL_GROWTH_PLAYBOOK.md` — 바이럴 삼각형, 밈 생산성
+
+> 파일이 없으면 WebSearch로 바이럴 기능 설계 사례를 조사한 뒤 아래 프로세스를 자체 지식으로 진행하라.
 
 ## 입력 정보 확인
 

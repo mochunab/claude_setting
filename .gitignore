@@ -1,3 +1,6 @@
+# 개인정보 포함 커맨드
+claude/commands/property.md
+
 # API 키가 포함된 파일
 *.env
 .env*

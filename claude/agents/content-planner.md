@@ -12,9 +12,11 @@ tools: Read, Grep, Glob, WebSearch, WebFetch
 
 ## 시작 전 필수
 
-매 기획 시 아래 두 문서를 반드시 읽어라:
-1. `src/docs/contents/VIRAL_CONTENT_MAKING_STRATEGY.md` — 제작 전략 (감정, 훅, 본문, CTA)
-2. `src/docs/contents/VIRAL_GROWTH_PLAYBOOK.md` — 성장 전략 (바이럴 삼각형, 논란 설계, 밈 생산성)
+매 기획 시 아래 두 문서를 찾아 읽어라 (Glob으로 검색):
+1. `**/VIRAL_CONTENT_MAKING_STRATEGY.md` — 제작 전략 (감정, 훅, 본문, CTA)
+2. `**/VIRAL_GROWTH_PLAYBOOK.md` — 성장 전략 (바이럴 삼각형, 논란 설계, 밈 생산성)
+
+> 파일이 없으면 WebSearch로 바이럴 콘텐츠 전략을 조사한 뒤 아래 프로세스를 자체 지식으로 진행하라.
 
 ## 입력 정보 확인
 

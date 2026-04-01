@@ -36,8 +36,7 @@
       "Bash(awk:*)",
       "WebFetch",
       "Edit",
-      "Write",
-      "mcp__pencil"
+      "Write"
     ],
     "deny": [
       "Bash(rm:*)",

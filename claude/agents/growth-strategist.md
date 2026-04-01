@@ -12,9 +12,11 @@ tools: Read, Grep, Glob, WebSearch, WebFetch
 
 ## 시작 전 필수
 
-매 분석 시 아래 두 문서를 반드시 읽어라:
-1. `src/docs/business/UNIVERSAL_GROWTH_FORMULA.md` — 5단계 성장 엔진
-2. `src/docs/business/SEVEN_SINS_BUSINESS_FRAMEWORK.md` — 7대 본능 프레임워크
+매 분석 시 아래 두 문서를 찾아 읽어라 (Glob으로 검색):
+1. `**/UNIVERSAL_GROWTH_FORMULA.md` — 5단계 성장 엔진
+2. `**/SEVEN_SINS_BUSINESS_FRAMEWORK.md` — 7대 본능 프레임워크
+
+> 파일이 없으면 WebSearch로 성장 전략 프레임워크를 조사한 뒤 아래 프로세스를 자체 지식으로 진행하라.
 
 ## 입력 정보 확인
 

@@ -11,9 +11,9 @@
 아래 3개 파일을 각각 offset=1, limit=150 으로 읽어. 전체를 읽을 필요 없어.
 **"이걸 모르면 손해다" 싶은 반직관적인 개념 하나**를 찾는 눈으로만 훑어봐.
 
-- `C:/Users/gksru/.claude/knowledge/마케팅_용어.txt`
-- `C:/Users/gksru/.claude/knowledge/서비스_기획.txt`
-- `C:/Users/gksru/.claude/knowledge/행동경제학.txt`
+- `~/.claude/knowledge/마케팅_용어.txt`
+- `~/.claude/knowledge/서비스_기획.txt`
+- `~/.claude/knowledge/행동경제학.txt`
 
 ### Step 2 — 각도(Angle) 잡기
 

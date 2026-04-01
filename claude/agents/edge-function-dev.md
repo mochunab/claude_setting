@@ -12,14 +12,22 @@ Supabase Edge Function 전문 에이전트.
 ## 필수 규칙
 
 ### CORS 헤더 (모든 함수에 필수)
+프로젝트의 CORS 설정 파일(예: `server/cors.ts`, `_shared/cors.ts`)이 있으면 그것을 사용.
+없으면 아래 패턴으로 화이트리스트 방식 적용:
 ```ts
-const corsHeaders = {
-  'Access-Control-Allow-Origin': '*',
-  'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
+const ALLOWED_ORIGINS = (Deno.env.get('ALLOWED_ORIGINS') || '').split(',')
+
+function getCorsHeaders(req: Request) {
+  const origin = req.headers.get('origin') || ''
+  const allowedOrigin = ALLOWED_ORIGINS.includes(origin) ? origin : ALLOWED_ORIGINS[0]
+  return {
+    'Access-Control-Allow-Origin': allowedOrigin,
+    'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
+  }
 }
 
 if (req.method === 'OPTIONS') {
-  return new Response('ok', { headers: corsHeaders })
+  return new Response('ok', { headers: getCorsHeaders(req) })
 }
 ```
 
