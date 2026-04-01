@@ -88,6 +88,7 @@ claude_setting/
 │   │   ├── vercel-react-best-practices/
 │   │   └── web-design-guidelines/
 │   ├── knowledge/                     # 지식 베이스
+│   │   ├── 바이럴_프레임워크.txt
 │   │   ├── 마케팅_용어.txt
 │   │   ├── 서비스_기획.txt
 │   │   └── 행동경제학.txt

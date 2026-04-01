@@ -1,4 +1,58 @@
 {
+  "permissions": {
+    "allow": [
+      "Bash(git:*)",
+      "Bash(ls:*)",
+      "Bash(cat:*)",
+      "Bash(head:*)",
+      "Bash(tail:*)",
+      "Bash(find:*)",
+      "Bash(grep:*)",
+      "Bash(mkdir:*)",
+      "Bash(touch:*)",
+      "Bash(cp:*)",
+      "Bash(mv:*)",
+      "Bash(npm:*)",
+      "Bash(npx:*)",
+      "Bash(yarn:*)",
+      "Bash(node:*)",
+      "Bash(python:*)",
+      "Bash(pip:*)",
+      "Bash(bun:*)",
+      "Bash(tsc:*)",
+      "Bash(prettier:*)",
+      "Bash(eslint:*)",
+      "Bash(curl:*)",
+      "Bash(wget:*)",
+      "Bash(cd:*)",
+      "Bash(echo:*)",
+      "Bash(pwd:*)",
+      "Bash(which:*)",
+      "Bash(wc:*)",
+      "Bash(diff:*)",
+      "Bash(sort:*)",
+      "Bash(uniq:*)",
+      "Bash(sed:*)",
+      "Bash(awk:*)",
+      "WebFetch",
+      "Edit",
+      "Write"
+    ],
+    "deny": [
+      "Bash(rm:*)",
+      "Bash(rmdir:*)",
+      "Bash(sudo:*)",
+      "Bash(chmod:*)",
+      "Bash(chown:*)",
+      "Bash(kill:*)",
+      "Bash(pkill:*)",
+      "Bash(shutdown:*)",
+      "Bash(reboot:*)",
+      "Bash(format:*)",
+      "Bash(del:*)",
+      "Bash(rd:*)"
+    ]
+  },
   "hooks": {
     "PostToolUse": [
       {
@@ -24,8 +78,8 @@
     "pr-review-toolkit@claude-plugins-official": true,
     "frontend-design@claude-plugins-official": true,
     "typescript-lsp@claude-plugins-official": true,
-    "serena@claude-plugins-official": true,
-    "frontend-design@claude-code-plugins": true
+    "serena@claude-plugins-official": true
   },
-  "skipDangerousModePermissionPrompt": true
+  "skipDangerousModePermissionPrompt": true,
+  "defaultMode": "acceptEdits"
 }
