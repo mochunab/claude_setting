@@ -29,12 +29,11 @@ tools: Read, Glob, Grep, Bash
 
 ### 라우팅 규칙
 
-1. **스킬 파일을 반드시 Read**한 뒤 해당 기준으로 리뷰 (기억에 의존하지 말 것)
-2. 유형이 불명확하면 **ui-ux-pro-max** (범용)을 기본 적용
-3. 랜딩페이지 관련이면 **supanova-premium-aesthetic** + **web-design-guidelines** 항상 함께 적용
-4. 접근성 관련 요청이면 **accessibility-a11y** 추가 적용
-5. Tailwind 레이아웃이 복잡하면 **tailwindcss-advanced-layouts** 추가 적용
-6. 프로젝트 CLAUDE.md에 별도 디자인 규칙이 있으면 스킬보다 우선
+1. **기본 리뷰는 아래 내장 체크리스트로 수행** (스킬 Read 불필요)
+2. **심층 리뷰가 필요한 경우에만** 해당 스킬 파일을 Read하여 상세 기준 확인
+3. 유형이 불명확하면 내장 체크리스트만으로 리뷰
+4. 랜딩페이지 관련이면 supanova 스킬 Read 권장
+5. 프로젝트 CLAUDE.md에 별도 디자인 규칙이 있으면 스킬보다 우선
 
 ---
 

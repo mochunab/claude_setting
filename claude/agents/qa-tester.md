@@ -48,6 +48,12 @@ await snapshot({ page: state.page }).then(console.log);
 await snapshot({ page: state.page, search: /error|버튼|로딩/i }).then(console.log);
 ```
 
+### 인증이 필요한 페이지 테스트
+- **방법 1 (권장)**: 이미 로그인된 브라우저 탭을 `context.pages()`에서 찾아 사용
+- **방법 2**: 사용자에게 로그인 URL을 물어본 뒤 직접 로그인 플로우 수행
+- **방법 3**: 사용자에게 "브라우저에서 먼저 로그인해달라"고 요청 후 해당 탭 사용
+- 인증 토큰/쿠키를 직접 주입하지 말 것 (보안)
+
 ### 주의사항
 - `snapshot()` 우선 사용 (텍스트 기반, 빠르고 저렴)
 - `screenshot`는 레이아웃/시각적 확인 필요 시만

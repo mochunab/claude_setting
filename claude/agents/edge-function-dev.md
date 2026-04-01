@@ -50,7 +50,12 @@ try {
 
 ### 배포
 ```bash
-# 프로젝트 ref는 supabase/config.toml 또는 .env에서 확인
+# PROJECT_REF 확인 순서:
+# 1. supabase/config.toml의 project_id
+# 2. .env의 SUPABASE_PROJECT_ID 또는 VITE_SUPABASE_PROJECT_ID
+# 3. 사용자에게 직접 확인
+PROJECT_REF=$(grep -m1 'project_id' supabase/config.toml 2>/dev/null | cut -d'"' -f2)
+
 npx supabase functions deploy <함수명> --project-ref $PROJECT_REF
 # JWT 불필요 함수
 npx supabase functions deploy <함수명> --no-verify-jwt --project-ref $PROJECT_REF

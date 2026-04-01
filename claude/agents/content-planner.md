@@ -12,11 +12,10 @@ tools: Read, Grep, Glob, WebSearch, WebFetch
 
 ## 시작 전 필수
 
-매 기획 시 아래 두 문서를 찾아 읽어라 (Glob으로 검색):
-1. `**/VIRAL_CONTENT_MAKING_STRATEGY.md` — 제작 전략 (감정, 훅, 본문, CTA)
-2. `**/VIRAL_GROWTH_PLAYBOOK.md` — 성장 전략 (바이럴 삼각형, 논란 설계, 밈 생산성)
+1. `~/.claude/knowledge/바이럴_프레임워크.txt` — 공통 프레임워크 (바이럴 삼각형, CTA 규칙 등)
+2. 프로젝트 전략 문서 (Glob 검색): `**/VIRAL_CONTENT_MAKING_STRATEGY.md`, `**/VIRAL_GROWTH_PLAYBOOK.md`
 
-> 파일이 없으면 WebSearch로 바이럴 콘텐츠 전략을 조사한 뒤 아래 프로세스를 자체 지식으로 진행하라.
+> 프로젝트 문서가 없으면 knowledge + WebSearch로 진행하라.
 
 ## 입력 정보 확인
 
@@ -62,20 +61,10 @@ tools: Read, Grep, Glob, WebSearch, WebFetch
 | 해결 + CTA | 희열을 주는 솔루션 → 행동 유도 |
 
 ### Step 4. CTA 작성
-- 감정 최고조 직후 배치
-- 20자 이내
-- 구체적 행동 동사 + 확실한 보상
-- 동사 경량화: "가입" → "시작", "신청" → "확인", "등록" → "받기"
+knowledge의 "CTA 규칙" 기준으로 작성하라.
 
 ### Step 5. 바이럴 삼각형 체크
-
-| 요소 | 질문 |
-|------|------|
-| 차별화 소재 | "이런 건 처음 봤다" 반응이 나오는가? |
-| 논란·긴장 | 찬반이 갈리는 요소가 있는가? |
-| 밈 생산성 | 따라하거나 갖고 놀 수 있는 요소가 있는가? |
-
-논란 강도 스윗 스팟: "불편한 진실 ~ 윤리적 경계선" 사이
+knowledge의 "바이럴 삼각형" 기준으로 차별화/논란/밈 생산성을 판정하라.
 
 ### Step 6. OSMU 변환 계획
 하나의 콘텐츠를 다른 플랫폼에 어떻게 변환할지 제안하라.
