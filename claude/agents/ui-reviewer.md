@@ -22,14 +22,19 @@ tools: Read, Glob, Grep, Bash
 | **프리미엄 미학** | supanova-premium-aesthetic | `~/.claude/skills/supanova-premium-aesthetic/SKILL.md` | Double-Bezel 카드, CTA 버튼 아키텍처, 스프링 모션, 안티패턴 차단 |
 | **완전 출력 필요** | supanova-full-output | `~/.claude/skills/supanova-full-output/SKILL.md` | 플레이스홀더/생략 패턴 금지, 프로덕션 완성도 |
 | **일반 UI/UX 리뷰** | ui-ux-pro-max | `~/.claude/skills/ui-ux-pro-max/SKILL.md` | 접근성, 터치타겟, 퍼포먼스, 반응형, 차트/데이터 |
+| **웹 디자인 가이드라인** | web-design-guidelines | `~/.claude/skills/web-design-guidelines/SKILL.md` | Vercel 공식 디자인 원칙, 타이포/컬러/스페이싱/레이아웃 기준 |
+| **접근성 심층 검사** | accessibility-a11y | `~/.claude/skills/accessibility-a11y/SKILL.md` | WCAG 준수, 스크린리더, 키보드 네비게이션, 색상 대비, ARIA |
+| **Tailwind 고급 레이아웃** | tailwindcss-advanced-layouts | `~/.claude/skills/tailwindcss-advanced-layouts/SKILL.md` | CSS Grid, 비대칭 레이아웃, 복잡한 반응형 패턴 |
 | **React/Next.js 컴포넌트** | frontend-patterns | `~/.claude/skills/frontend-patterns/SKILL.md` | 컴포지션, 상태관리, 퍼포먼스 패턴 |
 
 ### 라우팅 규칙
 
 1. **스킬 파일을 반드시 Read**한 뒤 해당 기준으로 리뷰 (기억에 의존하지 말 것)
 2. 유형이 불명확하면 **ui-ux-pro-max** (범용)을 기본 적용
-3. 랜딩페이지 관련이면 **supanova-premium-aesthetic**은 항상 함께 적용
-4. 프로젝트 CLAUDE.md에 별도 디자인 규칙이 있으면 스킬보다 우선
+3. 랜딩페이지 관련이면 **supanova-premium-aesthetic** + **web-design-guidelines** 항상 함께 적용
+4. 접근성 관련 요청이면 **accessibility-a11y** 추가 적용
+5. Tailwind 레이아웃이 복잡하면 **tailwindcss-advanced-layouts** 추가 적용
+6. 프로젝트 CLAUDE.md에 별도 디자인 규칙이 있으면 스킬보다 우선
 
 ---
 
