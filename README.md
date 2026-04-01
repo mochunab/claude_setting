@@ -11,6 +11,7 @@ Claude Code 환경 설정 파일 저장소
 git clone https://github.com/mochunab/claude_setting.git ~/claude_setting
 
 # 2. 설정 파일 복사
+cp ~/claude_setting/claude/CLAUDE.md ~/.claude/CLAUDE.md
 cp ~/claude_setting/claude/settings.json ~/.claude/settings.json
 cp -r ~/claude_setting/claude/agents ~/.claude/agents
 cp -r ~/claude_setting/claude/rules ~/.claude/rules
@@ -31,6 +32,7 @@ chmod +x ~/claude_setting/claude/setup-mcp.sh
 
 ```powershell
 git clone https://github.com/mochunab/claude_setting.git $env:USERPROFILE\claude_setting
+Copy-Item $env:USERPROFILE\claude_setting\claude\CLAUDE.md $env:USERPROFILE\.claude\CLAUDE.md
 Copy-Item $env:USERPROFILE\claude_setting\claude\settings.json $env:USERPROFILE\.claude\settings.json
 Copy-Item -Recurse $env:USERPROFILE\claude_setting\claude\agents $env:USERPROFILE\.claude\agents
 Copy-Item -Recurse $env:USERPROFILE\claude_setting\claude\rules $env:USERPROFILE\.claude\rules
@@ -49,6 +51,7 @@ $env:SUPABASE_ACCESS_TOKEN = "your-supabase-token"
 ```
 claude_setting/
 ├── claude/
+│   ├── CLAUDE.md                      # 글로벌 개발 원칙 (모든 프로젝트 자동 적용)
 │   ├── agents/                        # 글로벌 에이전트 (8개)
 │   │   ├── code-searcher.md
 │   │   ├── deploy-checker.md
@@ -64,11 +67,32 @@ claude_setting/
 │   │   ├── property.md
 │   │   └── thread.md
 │   ├── skills/                        # 스킬 (26개)
+│   │   ├── accessibility-a11y/
+│   │   ├── backend-patterns/
+│   │   ├── clickhouse-io/
+│   │   ├── coding-standards/
+│   │   ├── continuous-learning/
+│   │   ├── continuous-learning-v2/
+│   │   ├── eval-harness/
+│   │   ├── find-skills/
+│   │   ├── frontend-patterns/
+│   │   ├── gemini-web-fetch/
+│   │   ├── iterative-retrieval/
 │   │   ├── nadaunse-taste/
-│   │   ├── supanova-design-skill/
+│   │   ├── postgres-patterns/
+│   │   ├── security-review/
+│   │   ├── strategic-compact/
+│   │   ├── supanova-design-engine/
+│   │   ├── supanova-full-output/
+│   │   ├── supanova-premium-aesthetic/
+│   │   ├── supanova-redesign-engine/
+│   │   ├── tailwindcss-advanced-layouts/
+│   │   ├── tdd-workflow/
+│   │   ├── thread-writer/
 │   │   ├── trend/
 │   │   ├── ui-ux-pro-max/
-│   │   └── vercel-react-best-practices/
+│   │   ├── vercel-react-best-practices/
+│   │   └── web-design-guidelines/
 │   ├── knowledge/                     # 지식 베이스
 │   │   ├── 마케팅_용어.txt
 │   │   ├── 서비스_기획.txt
@@ -79,6 +103,21 @@ claude_setting/
 │   └── setup-mcp.ps1
 └── README.md
 ```
+
+---
+
+## CLAUDE.md (글로벌 개발 원칙)
+
+모든 프로젝트에서 자동 적용되는 범용 개발 원칙 (30줄):
+
+- **아키텍처**: 모듈화 우선, 확장성 검토, 전체 흐름 점검, 중복 컴포넌트 방지
+- **퍼포먼스**: Promise.all 병렬, 중복 호출 금지, 미들웨어 순수 로직, 캐시 우선 렌더링
+- **TypeScript**: any 금지, 외부 응답 타입 체크
+- **보안**: 시크릿 환경변수, 에러 일반화, 서버 재검증
+- **환경 분리**: 디버그 코드 프로덕션 노출 방지
+- **문서**: CLAUDE.md 200줄 제한, 커밋 컨벤션
+
+> 프로젝트별 추가 규칙은 `프로젝트/CLAUDE.md`에 작성하면 글로벌과 합쳐서 적용됩니다.
 
 ---
 
