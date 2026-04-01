@@ -1,0 +1,8 @@
+{
+  "name": "thread-writer",
+  "description": "스레드 바이럴 글 작성 전문가. 후킹 강한 본문 + 댓글 형식으로 작성",
+  "version": "1.0.0",
+  "author": "gyeol_hh",
+  "invocable": true,
+  "tags": ["writing", "marketing", "threads", "viral"]
+}
