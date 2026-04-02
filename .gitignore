@@ -37,3 +37,22 @@ claude/projects/
 # Python cache
 __pycache__/
 *.pyc
+
+# Symlinked skills (machine-specific paths)
+claude/skills/accessibility-a11y
+claude/skills/backend-patterns
+claude/skills/clickhouse-io
+claude/skills/coding-standards
+claude/skills/continuous-learning-v2
+claude/skills/find-skills
+claude/skills/frontend-patterns
+claude/skills/postgres-patterns
+claude/skills/security-review
+claude/skills/strategic-compact
+claude/skills/supanova-design-engine
+claude/skills/supanova-full-output
+claude/skills/supanova-premium-aesthetic
+claude/skills/supanova-redesign-engine
+claude/skills/tailwindcss-advanced-layouts
+claude/skills/tdd-workflow
+claude/skills/web-design-guidelines

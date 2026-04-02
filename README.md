@@ -19,13 +19,8 @@ cp -r ~/claude_setting/claude/skills ~/.claude/skills
 cp -r ~/claude_setting/claude/commands ~/.claude/commands
 cp -r ~/claude_setting/claude/knowledge ~/.claude/knowledge
 
-# 3. API keys
-export FIRECRAWL_API_KEY="your-firecrawl-api-key"
-export SUPABASE_ACCESS_TOKEN="your-supabase-token"
-
-# 4. MCP setup
-chmod +x ~/claude_setting/claude/setup-mcp.sh
-~/claude_setting/claude/setup-mcp.sh
+# 3. API keys (settings.local.json에 직접 설정)
+# MCP 서버 설정은 ~/.claude/settings.local.json에 수동 구성
 ```
 
 ### Windows (PowerShell)
@@ -39,9 +34,7 @@ Copy-Item -Recurse $env:USERPROFILE\claude_setting\claude\rules $env:USERPROFILE
 Copy-Item -Recurse $env:USERPROFILE\claude_setting\claude\skills $env:USERPROFILE\.claude\skills
 Copy-Item -Recurse $env:USERPROFILE\claude_setting\claude\commands $env:USERPROFILE\.claude\commands
 Copy-Item -Recurse $env:USERPROFILE\claude_setting\claude\knowledge $env:USERPROFILE\.claude\knowledge
-$env:FIRECRAWL_API_KEY = "your-firecrawl-api-key"
-$env:SUPABASE_ACCESS_TOKEN = "your-supabase-token"
-& $env:USERPROFILE\claude_setting\claude\setup-mcp.ps1
+# MCP 서버 설정은 %USERPROFILE%\.claude\settings.local.json에 수동 구성
 ```
 
 ---
@@ -92,10 +85,7 @@ claude_setting/
 │   │   ├── 마케팅_용어.txt
 │   │   ├── 서비스_기획.txt
 │   │   └── 행동경제학.txt
-│   ├── settings.json
-│   ├── settings.local.json.example
-│   ├── setup-mcp.sh
-│   └── setup-mcp.ps1
+│   └── settings.json
 └── README.md
 ```
 
