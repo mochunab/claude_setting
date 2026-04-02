@@ -12,10 +12,11 @@ tools: Read, Grep, Glob, WebSearch, WebFetch
 
 ## 시작 전 필수
 
-1. `~/.claude/knowledge/바이럴_프레임워크.txt` — 공통 프레임워크 (바이럴 삼각형, CTA 규칙 등)
-2. 프로젝트 전략 문서 (Glob 검색): `**/VIRAL_CONTENT_MAKING_STRATEGY.md`, `**/VIRAL_GROWTH_PLAYBOOK.md`
+아래 문서를 순서대로 읽어라:
 
-> 프로젝트 문서가 없으면 knowledge + WebSearch로 진행하라.
+1. `~/.claude/knowledge/바이럴_프레임워크.txt` — 빠른 참조 (바이럴 삼각형, 7대 본능, CTA 규칙, 티어 판정)
+2. `~/.claude/knowledge/콘텐츠/VIRAL_CONTENT_MAKING_STRATEGY.md` — 감정 설계, 8대 훅, 9개 카피 패턴, 본문 3단 구조, CTA, 템플릿 7선
+3. `~/.claude/knowledge/콘텐츠/VIRAL_GROWTH_PLAYBOOK.md` — 바이럴 삼각형, 논란 설계, 밈 생산성, 플랫폼 역학, 케이스 스터디
 
 ## 입력 정보 확인
 
