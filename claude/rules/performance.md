@@ -21,3 +21,21 @@
 ## API 라우트
 - `Cache-Control: no-store` 하드코딩 금지 — `next.config.mjs`에서 통합 관리
 - `staleTimes.dynamic: 0` 금지 (최소 30 이상)
+
+## 네트워크 안정성
+- 외부 API/DB 호출에 fetchWithRetry 적용 (3회, Exponential Backoff, 5xx만 재시도)
+- 타임아웃 필수 설정 — 무한 대기 방지
+
+## 에러 복원력
+- ErrorBoundary로 앱 전체 감싸기 — 에러 시 빈 화면 대신 복구 UI 표시
+- 에러 타입(network/500/404) 자동 분류 → 맞춤 메시지
+
+## HTTP 캐시 세분화
+- 정적 리소스(빌드 해시) → `immutable`
+- 이미지 → `max-age + stale-while-revalidate`
+- HTML/API → 용도에 맞는 s-maxage
+- 모든 리소스 동일 캐시 정책 금지
+
+## 이미지
+- 뷰포트 밖 이미지 → lazy loading
+- 반복 사용 이미지 → 프리로드 (priority 기반: high=동시, low=분산)
