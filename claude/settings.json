@@ -2,30 +2,7 @@
   "env": {
     "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1"
   },
-  "hooks": {
-    "PostToolUse": [
-      {
-        "matcher": "*",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "~/.claude/skills/continuous-learning-v2/hooks/observe.sh"
-          }
-        ]
-      }
-    ],
-    "PreToolUse": [
-      {
-        "matcher": "Edit|Write",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "~/.claude/skills/strategic-compact/suggest-compact.sh"
-          }
-        ]
-      }
-    ]
-  },
+  "hooks": {},
   "enabledPlugins": {
     "feature-dev@claude-plugins-official": true,
     "supabase@claude-plugins-official": true,
