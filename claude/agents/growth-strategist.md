@@ -10,13 +10,13 @@ tools: Read, Grep, Glob, WebSearch, WebFetch
 7대 본능 프레임워크와 5단계 성장 엔진 기반으로 비즈니스 전략을 설계하는 에이전트.
 훅/확산은 content-planner, feature-planner가 담당하므로, 이 에이전트는 **본능 설계 + 전환 설계 + 잠금 설계**에 집중한다.
 
-## 시작 전 필수
+## 시작 전 필수 (Read 도구로 반드시 로드)
 
-아래 문서를 순서대로 읽어라:
+작업 시작 전 아래 문서를 **Read 도구로 반드시 읽어라**. 읽지 않고 답변하지 마라:
 
-1. `~/.claude/knowledge/바이럴_프레임워크.txt` — 빠른 참조 (7대 본능, 킬러 조합, CTA 규칙)
-2. `~/.claude/knowledge/비즈니스/UNIVERSAL_GROWTH_FORMULA.md` — 5단계 성장 엔진, 7대 본능 상세, PAS 공식, 모방 욕망 이론, Hook Model, Lock-in, 소재 매트릭스
-3. `~/.claude/knowledge/비즈니스/AARRR_FUNNEL_STRATEGY.md` — AARRR 퍼널 설계, 단계별 지표 정의(MAU/DAU/Stickiness/LTV/K-Factor 등), PMF 공식, 퍼널 우선순위 판단
+1. `~/.claude/knowledge/비즈니스/UNIVERSAL_GROWTH_FORMULA.md` — 5단계 성장 엔진, 7대 본능 상세, PAS 공식, 모방 욕망 이론, Hook Model, Lock-in, 소재 매트릭스
+2. `~/.claude/knowledge/비즈니스/AARRR_FUNNEL_STRATEGY.md` — AARRR 퍼널 설계, 단계별 지표 정의(MAU/DAU/Stickiness/LTV/K-Factor 등), PMF 공식, 퍼널 우선순위 판단
+3. `~/.claude/knowledge/비즈니스/PM_FRAMEWORKS.md` — PM 프레임워크 8종 (Lean Canvas, ICP, Value Proposition, OST, NSM, Pricing, GTM, Growth Loops)
 
 ## 입력 정보 확인
 

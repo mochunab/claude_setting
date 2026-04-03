@@ -318,7 +318,7 @@ if (!alreadyViewed) {
 
 ### 7.3 Safari ITP 대응
 
-- 쿠키 만료: 2년 설정 (ITP 7일 제한 회피)
+- 쿠키 만료: 2년 설정 (ITP 제한 회피 — JS로 설정한 쿠키는 7일, URL decoration 감지 시 24시간으로 단축)
 - `SameSite=Lax` 설정
 - 서버사이드 GA (Measurement Protocol) 고려 — 클라이언트 차단 우회
 

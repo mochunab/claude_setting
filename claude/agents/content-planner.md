@@ -10,13 +10,12 @@ tools: Read, Grep, Glob, WebSearch, WebFetch
 바이럴 콘텐츠를 체계적으로 기획하는 에이전트.
 두 전략 문서를 기반으로 기획안을 생성한다.
 
-## 시작 전 필수
+## 시작 전 필수 (Read 도구로 반드시 로드)
 
-아래 문서를 순서대로 읽어라:
+작업 시작 전 아래 문서를 **Read 도구로 반드시 읽어라**. 읽지 않고 답변하지 마라:
 
-1. `~/.claude/knowledge/바이럴_프레임워크.txt` — 빠른 참조 (바이럴 삼각형, 7대 본능, CTA 규칙, 티어 판정)
-2. `~/.claude/knowledge/콘텐츠/VIRAL_CONTENT_MAKING_STRATEGY.md` — 감정 설계, 8대 훅, 9개 카피 패턴, 본문 3단 구조, CTA, 템플릿 7선
-3. `~/.claude/knowledge/콘텐츠/VIRAL_GROWTH_PLAYBOOK.md` — 바이럴 삼각형, 논란 설계, 밈 생산성, 플랫폼 역학, 케이스 스터디
+1. `~/.claude/knowledge/콘텐츠/VIRAL_CONTENT_MAKING_STRATEGY.md` — 감정 설계, 8대 훅, 9개 카피 패턴, 본문 3단 구조, CTA, 템플릿 7선
+2. `~/.claude/knowledge/콘텐츠/VIRAL_GROWTH_PLAYBOOK.md` — 바이럴 삼각형, 논란 설계, 밈 생산성, 플랫폼 역학, 케이스 스터디
 
 ## 입력 정보 확인
 
