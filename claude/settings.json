@@ -27,7 +27,6 @@
     ]
   },
   "enabledPlugins": {
-    "claude-mem@thedotmack": false,
     "feature-dev@claude-plugins-official": true,
     "supabase@claude-plugins-official": true,
     "code-review@claude-plugins-official": true,
@@ -35,7 +34,6 @@
     "frontend-design@claude-plugins-official": true,
     "typescript-lsp@claude-plugins-official": true,
     "serena@claude-plugins-official": true,
-    "frontend-design@claude-code-plugins": true,
     "vercel@claude-plugins-official": true,
     "vercel-plugin@vercel-vercel-plugin": true
   },

@@ -11,10 +11,10 @@
 아래 파일들을 각각 offset=1, limit=150 으로 읽어. 전체를 읽을 필요 없어.
 **"이걸 모르면 손해다" 싶은 반직관적인 개념 하나**를 찾는 눈으로만 훑어봐.
 
-**소재 풀 (개념/용어):**
-- `~/.claude/knowledge/마케팅_용어.txt`
-- `~/.claude/knowledge/서비스_기획.txt`
-- `~/.claude/knowledge/행동경제학.txt`
+**소재 풀 (전략/프레임워크):**
+- `~/.claude/knowledge/비즈니스/UNIVERSAL_GROWTH_FORMULA.md` — 7대 본능, 5단계 성장 엔진, PAS 공식
+- `~/.claude/knowledge/비즈니스/AARRR_FUNNEL_STRATEGY.md` — 퍼널 단계별 전략, Aha Moment, 리텐션 엔진
+- `~/.claude/knowledge/마케팅/VIRAL_FEATURE_STRATEGY.md` — 바이럴 기능 설계, 심리 트리거, 케이스 스터디
 
 **훅/카피 무기 (패턴 조합용):**
 - `~/.claude/knowledge/콘텐츠/VIRAL_CONTENT_MAKING_STRATEGY.md` — 감정 표, 9개 카피 패턴, 8대 훅 전략 부분만 훑어
