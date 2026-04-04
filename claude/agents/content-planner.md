@@ -14,8 +14,8 @@ tools: Read, Grep, Glob, WebSearch, WebFetch
 
 작업 시작 전 아래 문서를 **Read 도구로 반드시 읽어라**. 읽지 않고 답변하지 마라:
 
-1. `~/.claude/knowledge/콘텐츠/VIRAL_CONTENT_MAKING_STRATEGY.md` — 감정 설계, 8대 훅, 9개 카피 패턴, 본문 3단 구조, CTA, 템플릿 7선
-2. `~/.claude/knowledge/콘텐츠/VIRAL_GROWTH_PLAYBOOK.md` — 바이럴 삼각형, 논란 설계, 밈 생산성, 플랫폼 역학, 케이스 스터디
+1. `~/.claude/docs/콘텐츠/VIRAL_CONTENT_MAKING_STRATEGY.md` — 감정 설계, 8대 훅, 9개 카피 패턴, 본문 3단 구조, CTA, 템플릿 7선
+2. `~/.claude/docs/콘텐츠/VIRAL_GROWTH_PLAYBOOK.md` — 바이럴 삼각형, 논란 설계, 밈 생산성, 플랫폼 역학, 케이스 스터디
 
 ## 입력 정보 확인
 
