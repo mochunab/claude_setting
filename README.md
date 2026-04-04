@@ -90,7 +90,8 @@ claude_setting/
 │   │   │   ├── TOKEN_OPTIMIZATION.md
 │   │   │   ├── ONTOLOGY_GUIDE.md
 │   │   │   └── SECURITY.md
-│   └── settings.json
+│   ├── settings.json
+│   └── mcp-servers.example.json       # MCP 서버 설정 템플릿 (API 키 별도)
 └── README.md
 ```
 
@@ -234,12 +235,21 @@ Rules는 "제안"이지만 Hooks는 **강제**. Claude가 도구를 실행하기
 
 ## MCP Servers
 
-| MCP | 설명 | 설정 위치 |
-|-----|------|----------|
-| **Supabase** | DB 관리 | plugin (자동) |
-| **Playwriter** | 브라우저 자동화 (Playwright) | Local MCP |
+| MCP | 설명 | API 키 필요 |
+|-----|------|------------|
+| **Firecrawl** | 웹 스크래핑 | O (`FIRECRAWL_API_KEY`) |
+| **Playwright** | 브라우저 자동화 (공식) | X |
+| **Playwriter** | 브라우저 자동화 (경량) | X |
+| **Apify** | 웹 크롤링/액터 실행 | O (`APIFY_TOKEN`) |
+| **Supabase** | DB 관리 | plugin 자동 (별도 설정 불필요) |
 
-> MCP 서버 API 키는 `~/.claude.json` 또는 프로젝트별 `.claude.json`에 설정. **절대 git 커밋 금지.**
+설정 방법:
+```bash
+# mcp-servers.example.json을 참고해서 ~/.claude.json의 mcpServers에 추가
+# API 키는 각 서비스에서 발급 후 직접 입력
+```
+
+> API 키가 포함된 `~/.claude.json`은 **절대 git 커밋 금지.**
 
 ---
 

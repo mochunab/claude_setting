@@ -1,0 +1,40 @@
+{
+  "mcpServers": {
+    "firecrawl": {
+      "type": "stdio",
+      "command": "env",
+      "args": [
+        "FIRECRAWL_API_KEY=your-firecrawl-api-key",
+        "npx",
+        "-y",
+        "firecrawl-mcp"
+      ]
+    },
+    "playwright": {
+      "type": "stdio",
+      "command": "npx",
+      "args": [
+        "-y",
+        "@playwright/mcp@latest"
+      ]
+    },
+    "playwriter": {
+      "type": "stdio",
+      "command": "playwriter",
+      "args": [
+        "mcp"
+      ]
+    },
+    "apify": {
+      "type": "stdio",
+      "command": "npx",
+      "args": [
+        "-y",
+        "@apify/actors-mcp-server"
+      ],
+      "env": {
+        "APIFY_TOKEN": "your-apify-token"
+      }
+    }
+  }
+}
