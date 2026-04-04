@@ -59,7 +59,8 @@ claude_setting/
 │   ├── rules/                         # 글로벌 룰 (매 세션 자동 적용)
 │   │   ├── security.md                #   보안 원칙
 │   │   ├── performance.md             #   성능 원칙
-│   │   └── testing.md                 #   테스트 원칙
+│   │   ├── testing.md                 #   테스트 원칙
+│   │   └── agent-chaining.md          #   에이전트 체이닝 규칙
 │   │
 │   ├── hooks/                         # 글로벌 안전 훅 + 프로젝트용 템플릿
 │   │   ├── block-dangerous.sh         #   파괴적 명령 차단 (PreToolUse)
@@ -166,6 +167,7 @@ docs/           사람이 직접 열람       Claude 자동 탐색 대상 아님
 | `security.md` | 시크릿 관리, 입력검증, 에러처리, CORS, 인시던트 대응 |
 | `performance.md` | 미들웨어 경량화, 캐시 레이어, 병렬화, staleTimes, 로딩 전략 |
 | `testing.md` | 테스트 작성 기준, 단위/통합/E2E, mock 정책, 테스트 구조 |
+| `agent-chaining.md` | 에이전트 체이닝 — 범용 개발/Edge Function/UI/비즈니스/실패 복구 체인, 컨텍스트 전달 형식 |
 
 ---
 

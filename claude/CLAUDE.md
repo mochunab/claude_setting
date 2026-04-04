@@ -14,6 +14,7 @@
 - UI/디자인 변경 후 → `ui-reviewer` 에이전트로 리뷰
 - Edge Function 작업 → `edge-function-dev` 에이전트 활용
 - 코드 위치 파악 → `code-searcher` 에이전트로 탐색
+- 에이전트 체이닝 → `rules/agent-chaining.md` 참조
 
 ## 커밋
 - `<type>: <description>` — feat, fix, docs, style, refactor, test, chore

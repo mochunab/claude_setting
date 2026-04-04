@@ -348,7 +348,42 @@ AI 학습용 크롤러와 검색 크롤러는 별개 — 검색 노출은 유지
 
 ---
 
-## 10. SEO 로드맵 템플릿
+## 10. 트러블슈팅 (실제 사례)
+
+### 10.1 네이버 서치어드바이저 RSS "형식이 올바르지 않습니다"
+
+**원인 1 — RSS에 `<item>`이 0개**: 빈 RSS XML은 네이버가 형식 오류로 거부. DB 쿼리 에러로 데이터 없이 빈 `<channel>`만 반환되는 경우 발생.
+- **해결**: RSS 라우트 배포 후 반드시 `curl` 로 `<item>` 존재 확인. 존재하지 않는 컬럼을 SELECT하면 PostgREST가 에러 → `data: null` → 빈 배열로 조용히 실패.
+
+**원인 2 — 도메인 리다이렉트 (307)**: Vercel에서 `example.com` → `www.example.com` 리다이렉트 설정 시, 네이버가 리다이렉트를 따라가지 못하고 실패.
+- **해결**: Vercel 대시보드에서 bare domain(`example.com`)도 프로젝트에 직접 연결 (`vercel domains add example.com`). 그러면 리다이렉트 없이 200 직접 응답.
+- **확인**: `curl -sI https://example.com/feed.xml` → `HTTP/2 200` 이면 OK, `307` 이면 미해결.
+
+**원인 3 — 등록 도메인과 RSS 도메인 불일치**: 사이트가 `https://example.com`으로 등록돼있는데 RSS URL에 `https://www.example.com/feed.xml` 입력하면 "해당 도메인의 URL을 입력해주세요" 에러.
+- **해결**: 반드시 등록된 사이트와 동일한 도메인으로 RSS URL 제출.
+
+### 10.2 네이버 서치어드바이저 캡차
+
+자동화 도구(Playwright 등)로 RSS/사이트맵 제출 시 캡차가 뜸. 캡차 이미지는 별도 레이어라 스크린샷에 안 잡힐 수 있음.
+- **해결**: 캡차는 수동 입력 필수. 자동화는 URL 입력 + 확인 클릭까지만, 캡차 단계는 사람이 개입.
+
+### 10.3 Vercel 도메인 리다이렉트와 SEO
+
+Vercel에서 `www`를 primary domain으로 설정하면 bare domain이 307 리다이렉트됨. 이때:
+- `canonical` URL과 primary domain이 불일치하면 SEO 혼란 가능
+- 네이버/Bing 등 일부 검색엔진 도구가 리다이렉트를 따라가지 못함
+- **권장**: `canonical` URL 도메인 = Vercel primary domain = 검색엔진 등록 도메인, 셋 다 통일. 또는 bare domain + www 둘 다 프로젝트에 연결하여 리다이렉트 제거.
+
+### 10.4 RSS 제출 전 체크리스트
+
+- [ ] `curl -s https://도메인/feed.xml | grep '<item>'` — 아이템 존재 확인
+- [ ] `curl -sI https://도메인/feed.xml` — 200 응답 + `Content-Type: application/rss+xml` 확인
+- [ ] 리다이렉트 없음 확인 (307/301 → 실패 원인)
+- [ ] RSS 내 모든 URL이 등록된 사이트 도메인과 일치하는지 확인
+
+---
+
+## 11. SEO 로드맵 템플릿
 
 | Phase | 내용 | 우선순위 |
 |-------|------|----------|
@@ -367,7 +402,7 @@ AI 학습용 크롤러와 검색 크롤러는 별개 — 검색 노출은 유지
 
 ---
 
-## 11. 핵심 원칙 요약
+## 12. 핵심 원칙 요약
 
 1. **모든 페이지에 고유한 메타 태그** — 중복 title/description은 SEO 페널티
 2. **크롤러가 볼 수 있는 HTML** — SPA라면 프리렌더 또는 SSR 필수
