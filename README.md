@@ -18,6 +18,8 @@ cp -r ~/claude_setting/claude/rules ~/.claude/rules
 cp -r ~/claude_setting/claude/skills ~/.claude/skills
 cp -r ~/claude_setting/claude/commands ~/.claude/commands
 cp -r ~/claude_setting/claude/knowledge ~/.claude/knowledge
+cp -r ~/claude_setting/claude/hooks ~/.claude/hooks
+chmod +x ~/.claude/hooks/*.sh
 
 # 3. API keys (settings.local.json에 직접 설정)
 # MCP 서버 설정은 ~/.claude/settings.local.json에 수동 구성
@@ -34,6 +36,7 @@ Copy-Item -Recurse $env:USERPROFILE\claude_setting\claude\rules $env:USERPROFILE
 Copy-Item -Recurse $env:USERPROFILE\claude_setting\claude\skills $env:USERPROFILE\.claude\skills
 Copy-Item -Recurse $env:USERPROFILE\claude_setting\claude\commands $env:USERPROFILE\.claude\commands
 Copy-Item -Recurse $env:USERPROFILE\claude_setting\claude\knowledge $env:USERPROFILE\.claude\knowledge
+Copy-Item -Recurse $env:USERPROFILE\claude_setting\claude\hooks $env:USERPROFILE\.claude\hooks
 # MCP 서버 설정은 %USERPROFILE%\.claude\settings.local.json에 수동 구성
 ```
 
@@ -54,6 +57,9 @@ claude_setting/
 │   │   ├── content-planner.md
 │   │   ├── feature-planner.md
 │   │   └── growth-strategist.md
+│   ├── hooks/                         # 자동 실행 훅 (PreToolUse 가드)
+│   │   ├── block-dangerous.sh
+│   │   └── protect-files.sh
 │   ├── rules/                         # 글로벌 룰 (자동 적용)
 │   │   ├── security.md
 │   │   └── performance.md
@@ -151,6 +157,19 @@ claude_setting/
 
 ---
 
+## Hooks (PreToolUse 가드)
+
+Rules는 "제안"이지만 Hooks는 **강제**. Claude가 도구를 실행하기 전에 자동으로 검사하고, 위반 시 종료 코드 2로 차단합니다.
+
+| Hook | 타이밍 | 대상 | 역할 |
+|------|--------|------|------|
+| **block-dangerous.sh** | PreToolUse | Bash | `rm -rf`, `git reset --hard`, `git push --force`, `DROP TABLE`, pipe-to-shell 등 위험 명령어 차단 |
+| **protect-files.sh** | PreToolUse | Edit\|Write | `.env*`, `.git/`, lock 파일, `*.pem`, `*.key`, `secrets/` 편집 차단 |
+
+> 차단 시 Claude에게 이유를 알려주므로, 정말 필요한 경우 사용자에게 확인을 요청합니다. `skipDangerousModePermissionPrompt: true` 환경에서 필수 안전망.
+
+---
+
 ## Skills (4개)
 
 | Skill | 용도 |
@@ -227,7 +246,10 @@ claude_setting/
 ## Configuration
 
 ### settings.json
-글로벌 설정 — 플러그인 활성화, 환경변수
+글로벌 설정 — 플러그인 활성화, 환경변수, 훅 등록
 
 ### settings.local.json
 기기별 로컬 설정 — MCP 서버 + API 키. **절대 git 커밋 금지.**
+
+### hooks/
+셸 스크립트 기반 자동 가드. `settings.json`의 `hooks` 필드에서 등록하고, `~/.claude/hooks/`에 스크립트 배치.
