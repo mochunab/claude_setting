@@ -23,8 +23,9 @@ cp -r ~/claude_setting/claude/docs ~/.claude/docs
 # 3. hooks 실행 권한
 chmod +x ~/.claude/hooks/*.sh
 
-# 4. API keys (settings.local.json에 직접 설정)
-# MCP 서버 설정은 ~/.claude/settings.local.json에 수동 구성
+# 4. permissions 설정 (예시 복사 후 필요에 맞게 수정)
+cp ~/claude_setting/claude/settings.local.example.json ~/.claude/settings.local.json
+# MCP 서버, API 키 등은 settings.local.json에서 직접 설정
 ```
 
 ### Windows (PowerShell)
@@ -39,7 +40,9 @@ Copy-Item -Recurse $env:USERPROFILE\claude_setting\claude\skills $env:USERPROFIL
 Copy-Item -Recurse $env:USERPROFILE\claude_setting\claude\commands $env:USERPROFILE\.claude\commands
 Copy-Item -Recurse $env:USERPROFILE\claude_setting\claude\hooks $env:USERPROFILE\.claude\hooks
 Copy-Item -Recurse $env:USERPROFILE\claude_setting\claude\docs $env:USERPROFILE\.claude\docs
-# MCP 서버 설정은 %USERPROFILE%\.claude\settings.local.json에 수동 구성
+# 4. permissions 설정 (예시 복사 후 필요에 맞게 수정)
+Copy-Item $env:USERPROFILE\claude_setting\claude\settings.local.example.json $env:USERPROFILE\.claude\settings.local.json
+# MCP 서버, API 키 등은 settings.local.json에서 직접 설정
 ```
 
 ---
@@ -51,6 +54,7 @@ claude_setting/
 ├── claude/
 │   ├── CLAUDE.md                      # 글로벌 개발 원칙 (모든 프로젝트 자동 적용)
 │   ├── settings.json                  # 플러그인 + 훅 + 권한
+│   ├── settings.local.example.json    # permissions 예시 (복사 후 settings.local.json으로 사용)
 │   │
 │   ├── rules/                         # 글로벌 룰 (매 세션 자동 적용)
 │   │   ├── security.md                #   보안 원칙
@@ -307,5 +311,12 @@ Claude가 자동 탐색하지 않는 문서. 에이전트가 명시적 경로로
 ### settings.json
 글로벌 설정 — hooks, 플러그인, 기본 모드
 
+### settings.local.example.json
+permissions 예시 파일. 복사 후 `settings.local.json`으로 사용:
+- `defaultMode: "acceptEdits"` — Edit/Write 자동 허용, Bash는 허용 목록 기반
+- Bash 허용: git, gh, node, npm, brew, supabase, vercel 등 개발 도구
+- MCP 허용: supabase, playwright, playwriter, firecrawl, apify
+- WebFetch 허용: docs.anthropic.com, github.com 등
+
 ### settings.local.json
-기기별 로컬 설정 — MCP 서버 + API 키. **절대 git 커밋 금지.**
+기기별 로컬 설정 — permissions + MCP 서버 + API 키. **절대 git 커밋 금지.**
