@@ -75,10 +75,27 @@ claude_setting/
 │   ├── commands/                      # 슬래시 커맨드
 │   │   └── thread.md                  #   스레드 바이럴 글 작성기
 │   │
-│   ├── skills/                        # 스킬 (3개 커스텀)
+│   ├── skills/                        # 스킬 (20개)
 │   │   ├── ui-ux-pro-max/             #   UI/UX 디자인 (67 styles, 96 palettes)
+│   │   ├── supanova-design-engine/    #   프리미엄 랜딩페이지 생성
+│   │   ├── supanova-premium-aesthetic/#   $150k 에이전시 미학
+│   │   ├── supanova-redesign-engine/  #   기존 페이지 업그레이드
+│   │   ├── supanova-full-output/      #   AI 출력 생략 방지
+│   │   ├── web-design-guidelines/     #   웹 디자인 원칙
+│   │   ├── accessibility-a11y/        #   WCAG 접근성 심층 검사
+│   │   ├── tailwindcss-advanced-layouts/ # Tailwind 고급 레이아웃
+│   │   ├── frontend-patterns/         #   React/Next.js 패턴
+│   │   ├── coding-standards/          #   TS/JS/React 코딩 표준
+│   │   ├── backend-patterns/          #   Node.js/API 아키텍처
+│   │   ├── postgres-patterns/         #   PostgreSQL 최적화 (Supabase)
+│   │   ├── clickhouse-io/             #   ClickHouse 분석 DB
+│   │   ├── security-review/           #   보안 체크리스트
+│   │   ├── tdd-workflow/              #   TDD 워크플로우
 │   │   ├── trend/                     #   멀티 플랫폼 트렌드 서칭
-│   │   └── gemini-web-fetch/          #   WebFetch 폴백 (Gemini)
+│   │   ├── gemini-web-fetch/          #   WebFetch 폴백 (Gemini)
+│   │   ├── find-skills/               #   스킬 검색/설치
+│   │   ├── continuous-learning-v2/    #   세션 관찰 → 본능 학습
+│   │   └── strategic-compact/         #   컨텍스트 압축 제안
 │   │
 │   └── docs/                          # 사람용 레퍼런스 (Claude 자동 탐색 대상 아님)
 │       ├── 개발/
@@ -167,6 +184,22 @@ docs/           사람이 직접 열람       Claude 자동 탐색 대상 아님
 | `content-planner` | 바이럴 콘텐츠 기획 — 감정 설계, 훅 카피, CTA | `docs/콘텐츠/` |
 | `feature-planner` | 바이럴 기능/제품 설계 — 심리 트리거, 공유 루프 | `docs/마케팅/`, `docs/비즈니스/` |
 | `growth-strategist` | 사업 성장 전략 — 본능 분석, AARRR 퍼널 | `docs/비즈니스/` |
+
+### ui-reviewer 스킬 라우팅
+
+ui-reviewer는 요청 유형에 따라 보유 디자인 스킬을 자동 선택하여 리뷰합니다:
+
+| 요청 유형 | 적용 스킬 |
+|-----------|-----------|
+| 랜딩페이지 신규 | supanova-design-engine |
+| 리디자인 | supanova-redesign-engine |
+| 프리미엄 미학 | supanova-premium-aesthetic |
+| 완전 출력 검증 | supanova-full-output |
+| 일반 UI/UX | ui-ux-pro-max (기본) |
+| 웹 디자인 가이드라인 | web-design-guidelines |
+| 접근성 심층 검사 | accessibility-a11y |
+| Tailwind 고급 레이아웃 | tailwindcss-advanced-layouts |
+| React/Next.js | frontend-patterns |
 
 ---
 
