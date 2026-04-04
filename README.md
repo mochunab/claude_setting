@@ -17,11 +17,13 @@ cp -r ~/claude_setting/claude/agents ~/.claude/agents
 cp -r ~/claude_setting/claude/rules ~/.claude/rules
 cp -r ~/claude_setting/claude/skills ~/.claude/skills
 cp -r ~/claude_setting/claude/commands ~/.claude/commands
-cp -r ~/claude_setting/claude/knowledge ~/.claude/knowledge
 cp -r ~/claude_setting/claude/hooks ~/.claude/hooks
+cp -r ~/claude_setting/claude/docs ~/.claude/docs
+
+# 3. hooks 실행 권한
 chmod +x ~/.claude/hooks/*.sh
 
-# 3. API keys (settings.local.json에 직접 설정)
+# 4. API keys (settings.local.json에 직접 설정)
 # MCP 서버 설정은 ~/.claude/settings.local.json에 수동 구성
 ```
 
@@ -35,8 +37,8 @@ Copy-Item -Recurse $env:USERPROFILE\claude_setting\claude\agents $env:USERPROFIL
 Copy-Item -Recurse $env:USERPROFILE\claude_setting\claude\rules $env:USERPROFILE\.claude\rules
 Copy-Item -Recurse $env:USERPROFILE\claude_setting\claude\skills $env:USERPROFILE\.claude\skills
 Copy-Item -Recurse $env:USERPROFILE\claude_setting\claude\commands $env:USERPROFILE\.claude\commands
-Copy-Item -Recurse $env:USERPROFILE\claude_setting\claude\knowledge $env:USERPROFILE\.claude\knowledge
 Copy-Item -Recurse $env:USERPROFILE\claude_setting\claude\hooks $env:USERPROFILE\.claude\hooks
+Copy-Item -Recurse $env:USERPROFILE\claude_setting\claude\docs $env:USERPROFILE\.claude\docs
 # MCP 서버 설정은 %USERPROFILE%\.claude\settings.local.json에 수동 구성
 ```
 
@@ -48,6 +50,18 @@ Copy-Item -Recurse $env:USERPROFILE\claude_setting\claude\hooks $env:USERPROFILE
 claude_setting/
 ├── claude/
 │   ├── CLAUDE.md                      # 글로벌 개발 원칙 (모든 프로젝트 자동 적용)
+│   ├── settings.json                  # 플러그인 + 훅 + 권한
+│   │
+│   ├── rules/                         # 글로벌 룰 (매 세션 자동 적용)
+│   │   ├── security.md                #   보안 원칙
+│   │   ├── performance.md             #   성능 원칙
+│   │   └── testing.md                 #   테스트 원칙
+│   │
+│   ├── hooks/                         # 글로벌 안전 훅 + 프로젝트용 템플릿
+│   │   ├── block-dangerous.sh         #   파괴적 명령 차단 (PreToolUse)
+│   │   ├── protect-files.sh           #   민감 파일 보호 (PreToolUse)
+│   │   └── lint-changed.sh            #   린트 자동 실행 템플릿 (프로젝트별 적용)
+│   │
 │   ├── agents/                        # 글로벌 에이전트 (8개)
 │   │   ├── code-searcher.md
 │   │   ├── deploy-checker.md
@@ -57,130 +71,102 @@ claude_setting/
 │   │   ├── content-planner.md
 │   │   ├── feature-planner.md
 │   │   └── growth-strategist.md
-│   ├── hooks/                         # 자동 실행 훅 (PreToolUse 가드)
-│   │   ├── block-dangerous.sh
-│   │   └── protect-files.sh
-│   ├── rules/                         # 글로벌 룰 (자동 적용)
-│   │   ├── security.md
-│   │   └── performance.md
+│   │
 │   ├── commands/                      # 슬래시 커맨드
-│   │   └── thread.md
-│   ├── skills/                        # 스킬 (4개)
-│   │   ├── gemini-web-fetch/
-│   │   ├── trend/
-│   │   ├── ui-ux-pro-max/
-│   │   └── vercel-react-best-practices/
-│   ├── knowledge/                     # 지식 베이스 (범용 전략서 + 참조 데이터)
-│   │   ├── 비즈니스/
-│   │   │   ├── UNIVERSAL_GROWTH_FORMULA.md
-│   │   │   ├── AARRR_FUNNEL_STRATEGY.md
-│   │   │   └── PM_FRAMEWORKS.md
-│   │   ├── 마케팅/
-│   │   │   ├── VIRAL_FEATURE_STRATEGY.md
-│   │   │   ├── SEO_전략서.md
-│   │   │   └── GA_전략서.md
-│   │   ├── 콘텐츠/
-│   │   │   ├── VIRAL_CONTENT_MAKING_STRATEGY.md
-│   │   │   ├── VIRAL_GROWTH_PLAYBOOK.md
-│   │   │   └── ZALPHA_CHARACTER_GUIDE.md
-│   │   ├── 개발/
-│   │   │   ├── PERFORMANCE_OPTIMIZATION.md
-│   │   │   ├── HARNESS_ENGINEERING.md
-│   │   │   ├── CLAUDE_SETUP_STRATEGY.md
-│   │   │   ├── TOKEN_OPTIMIZATION.md
-│   │   │   ├── ONTOLOGY_GUIDE.md
-│   │   │   └── SECURITY.md
-│   ├── settings.json
-│   └── mcp-servers.example.json       # MCP 서버 설정 템플릿 (API 키 별도)
+│   │   └── thread.md                  #   스레드 바이럴 글 작성기
+│   │
+│   ├── skills/                        # 스킬 (3개 커스텀)
+│   │   ├── ui-ux-pro-max/             #   UI/UX 디자인 (67 styles, 96 palettes)
+│   │   ├── trend/                     #   멀티 플랫폼 트렌드 서칭
+│   │   └── gemini-web-fetch/          #   WebFetch 폴백 (Gemini)
+│   │
+│   └── docs/                          # 사람용 레퍼런스 (Claude 자동 탐색 대상 아님)
+│       ├── 개발/
+│       │   ├── HOOKS_STRATEGY.md      #   Hook 전략서 + 프로젝트별 적용 가이드
+│       │   ├── CLAUDE_SETUP_STRATEGY.md
+│       │   ├── HARNESS_ENGINEERING.md
+│       │   ├── TOKEN_OPTIMIZATION.md
+│       │   ├── PERFORMANCE_OPTIMIZATION.md
+│       │   ├── SECURITY.md
+│       │   └── ONTOLOGY_GUIDE.md
+│       ├── 비즈니스/
+│       │   ├── UNIVERSAL_GROWTH_FORMULA.md
+│       │   ├── AARRR_FUNNEL_STRATEGY.md
+│       │   └── PM_FRAMEWORKS.md
+│       ├── 마케팅/
+│       │   ├── VIRAL_FEATURE_STRATEGY.md
+│       │   ├── SEO_전략서.md
+│       │   └── GA_전략서.md
+│       └── 콘텐츠/
+│           ├── VIRAL_CONTENT_MAKING_STRATEGY.md
+│           ├── VIRAL_GROWTH_PLAYBOOK.md
+│           └── ZALPHA_CHARACTER_GUIDE.md
 └── README.md
 ```
 
 ---
 
-## CLAUDE.md (글로벌 개발 원칙)
+## 레이어 구조
 
-모든 프로젝트에서 자동 적용되는 미니멀 행동 규칙 (22줄):
-
-- **응답 스타일**: 간결 답변, 한국어 기본, 코멘트 최소화
-- **작업 방식**: 수정 전 기존 코드 확인, 전체 흐름 점검, 모듈화 우선
-- **에이전트 워크플로우**: 배포 전 deploy-checker, UI 변경 후 ui-reviewer 등 적시 스폰 힌트
-- **커밋**: `<type>: <description>` 컨벤션
-- **문서**: CLAUDE.md 200줄 제한
-
-> 보안은 `rules/security.md`, 코딩 패턴은 `skills/*`에 위임. 프로젝트별 추가 규칙은 `프로젝트/CLAUDE.md`에 작성하면 글로벌과 합쳐서 적용됩니다.
-
----
-
-## Plugins (5개 — 활성)
-
-| Plugin | 용도 |
-|--------|------|
-| **feature-dev** | 코드 탐색, 아키텍처 설계, 코드 리뷰 에이전트 |
-| **supabase** | Supabase DB 관리 (execute_sql, apply_migration 등) |
-| **pr-review-toolkit** | PR 리뷰 — code-reviewer, silent-failure-hunter, code-simplifier, comment-analyzer, pr-test-analyzer, type-design-analyzer |
-| **frontend-design** | 프론트엔드 UI 생성 |
-| **vercel** | Vercel 배포/환경변수/스킬 (deploy, env, nextjs, ai-sdk 등 30+ 스킬 포함) |
-
-> **비활성화된 플러그인**: `code-review` (pr-review-toolkit에 포함), `typescript-lsp` (내장 LSP 중복), `serena` (내장 도구 중복), `vercel-plugin` (vercel과 중복)
+```
+rules/          매 세션 자동 로드     Claude가 반드시 따르는 코딩 규칙
+hooks/          도구 사용 시 자동 실행  안전장치 (차단/보호) + 품질 자동화 (린트)
+agents/         명시적 호출            전문 작업 수행 (배포 점검, UI 리뷰, 기획)
+skills/         키워드 트리거          특정 주제 감지 시 자동 활성화
+commands/       /커맨드 실행           사용자가 직접 호출하는 워크플로우
+docs/           사람이 직접 열람       Claude 자동 탐색 대상 아님 (에이전트가 명시 참조만)
+```
 
 ---
 
-## Agents (8개 — 모든 프로젝트 범용)
+## Hooks (안전장치)
+
+### 글로벌 (모든 프로젝트 자동 적용)
+
+| Hook | 이벤트 | 역할 |
+|------|--------|------|
+| `block-dangerous.sh` | PreToolUse: Bash | `rm -rf`, `git reset --hard`, `git push --force` (force-with-lease 허용), `DROP TABLE` 등 차단 |
+| `protect-files.sh` | PreToolUse: Edit\|Write | `.env`, `.git/`, lock 파일, `.pem`, `.key`, `secrets/` 수정 차단 |
+
+### 프로젝트별 (템플릿 제공)
+
+| Hook | 이벤트 | 역할 |
+|------|--------|------|
+| `lint-changed.sh` | PostToolUse: Edit\|Write | 변경된 파일에 ESLint 자동 실행. 프로젝트에 ESLint 없으면 통과 |
+
+프로젝트별 적용법은 `docs/개발/HOOKS_STRATEGY.md` 참조.
+
+---
+
+## Rules (자동 적용 — 3개)
+
+| Rule | 역할 |
+|------|------|
+| `security.md` | 시크릿 관리, 입력검증, 에러처리, CORS, 인시던트 대응 |
+| `performance.md` | 미들웨어 경량화, 캐시 레이어, 병렬화, staleTimes, 로딩 전략 |
+| `testing.md` | 테스트 작성 기준, 단위/통합/E2E, mock 정책, 테스트 구조 |
+
+---
+
+## Agents (8개)
 
 ### 개발 에이전트
 
 | Agent | 용도 | 트리거 |
 |-------|------|--------|
-| **code-searcher** | 코드베이스 탐색, 영향도 분석 | "찾아줘", "어디서", "영향도" |
-| **deploy-checker** | 배포 전 빌드/보안/환경변수 점검 | "배포 전 점검", "프로덕션 체크" |
-| **edge-function-dev** | Supabase Edge Function 개발/디버깅 | Edge Function 관련 작업 |
-| **qa-tester** | Playwright MCP 기반 브라우저 QA 테스트 | "QA", "테스트", "점검" |
-| **ui-reviewer** | UI/디자인 리뷰 (스킬 자동 라우팅) | "UI 검사", "디자인 체크" |
+| `code-searcher` | 코드베이스 탐색, 영향도 분석 | "찾아줘", "어디서", "영향도" |
+| `deploy-checker` | 배포 전 빌드/보안/환경변수 점검 | "배포 전 점검", "프로덕션 체크" |
+| `edge-function-dev` | Supabase Edge Function 개발/디버깅 | Edge Function 관련 작업 |
+| `qa-tester` | Playwright MCP 기반 브라우저 QA 테스트 | "QA", "테스트", "점검" |
+| `ui-reviewer` | UI/디자인 리뷰 (스킬 자동 라우팅) | "UI 검사", "디자인 체크" |
 
 ### 비즈니스 에이전트
 
-| Agent | 용도 | 트리거 |
-|-------|------|--------|
-| **content-planner** | 바이럴 콘텐츠 기획 — 감정 설계, 훅 카피, CTA | "콘텐츠 기획", "카피 써줘" |
-| **feature-planner** | 바이럴 기능/제품 설계 — 심리 트리거, 공유 루프, 케이스 스터디 | "기능 기획", "바이럴 기능" |
-| **growth-strategist** | 사업 성장 전략 — 본능 분석, AARRR 퍼널, 전환/잠금 설계 | "사업 전략", "성장 설계" |
-
----
-
-## Rules (자동 적용)
-
-| Rule | 역할 |
-|------|------|
-| **security.md** | 보안 기본 원칙 — 시크릿 관리, 입력검증, 에러처리, CORS, 인시던트 대응 |
-| **performance.md** | 성능 기본 원칙 — 미들웨어 경량화, 캐시 레이어, 병렬화, staleTimes, 로딩 전략 |
-
-> 모든 코딩 작업 시 자동으로 로드됩니다. 프로젝트별 추가 Rules는 `프로젝트/.claude/rules/`에 배치.
-
----
-
-## Hooks (PreToolUse 가드)
-
-Rules는 "제안"이지만 Hooks는 **강제**. Claude가 도구를 실행하기 전에 자동으로 검사하고, 위반 시 종료 코드 2로 차단합니다.
-
-| Hook | 타이밍 | 대상 | 역할 |
-|------|--------|------|------|
-| **block-dangerous.sh** | PreToolUse | Bash | `rm -rf`, `git reset --hard`, `git push --force`, `DROP TABLE`, pipe-to-shell 등 위험 명령어 차단 |
-| **protect-files.sh** | PreToolUse | Edit\|Write | `.env*`, `.git/`, lock 파일, `*.pem`, `*.key`, `secrets/` 편집 차단 |
-
-> 차단 시 Claude에게 이유를 알려주므로, 정말 필요한 경우 사용자에게 확인을 요청합니다. `skipDangerousModePermissionPrompt: true` 환경에서 필수 안전망.
-
----
-
-## Skills (4개)
-
-| Skill | 용도 |
-|-------|------|
-| **ui-ux-pro-max** | UI/UX 디자인 인텔리전스 (67 styles, 96 palettes, 57 font pairings, 13 stacks) |
-| **vercel-react-best-practices** | React/Next.js 성능 최적화 (Vercel Engineering 기반, 50+ 규칙) |
-| **trend** | 멀티 플랫폼 트렌드 서칭 (X, 인스타, 스레드, 틱톡, 유튜브, 레딧) |
-| **gemini-web-fetch** | WebFetch 폴백 (Gemini 활용) |
-
-> 나머지 스킬(frontend-patterns, backend-patterns, postgres-patterns 등)은 플러그인(vercel, feature-dev 등)에 내장되어 제공됩니다.
+| Agent | 용도 | 참조 문서 |
+|-------|------|----------|
+| `content-planner` | 바이럴 콘텐츠 기획 — 감정 설계, 훅 카피, CTA | `docs/콘텐츠/` |
+| `feature-planner` | 바이럴 기능/제품 설계 — 심리 트리거, 공유 루프 | `docs/마케팅/`, `docs/비즈니스/` |
+| `growth-strategist` | 사업 성장 전략 — 본능 분석, AARRR 퍼널 | `docs/비즈니스/` |
 
 ---
 
@@ -192,74 +178,47 @@ Rules는 "제안"이지만 Hooks는 **강제**. Claude가 도구를 실행하기
 
 ---
 
-## Knowledge Base
+## Plugins (5개)
 
-범용 전략서 + 참조 데이터. 에이전트가 직접 경로로 참조한다.
-
-### 비즈니스 전략서
-
-| 파일 | 내용 | 참조 에이전트 |
-|------|------|-------------|
-| `비즈니스/UNIVERSAL_GROWTH_FORMULA.md` | 5단계 성장 엔진 (본능→훅→확산→전환→잠금), 7대 본능, PAS, Hook Model, Lock-in | growth-strategist |
-| `비즈니스/AARRR_FUNNEL_STRATEGY.md` | AARRR 퍼널 설계, 단계별 지표 (MAU/LTV/K-Factor 등), PMF 공식 | growth-strategist |
-| `비즈니스/PM_FRAMEWORKS.md` | PM 프레임워크 8종 — Lean Canvas, ICP, Value Proposition, OST, NSM 등 | growth-strategist, feature-planner |
-
-### 마케팅 전략서
-
-| 파일 | 내용 | 참조 에이전트 |
-|------|------|-------------|
-| `마케팅/VIRAL_FEATURE_STRATEGY.md` | 바이럴 기능 설계, 5가지 심리 트리거, 26개 케이스 스터디 | feature-planner |
-| `마케팅/SEO_전략서.md` | SEO 체크리스트, 기술적 SEO, 콘텐츠 SEO | — |
-| `마케팅/GA_전략서.md` | GA4 이벤트 설계, 전자상거래 퍼널, 디버깅 | — |
-
-### 콘텐츠 전략서
-
-| 파일 | 내용 | 참조 에이전트 |
-|------|------|-------------|
-| `콘텐츠/VIRAL_CONTENT_MAKING_STRATEGY.md` | 감정 설계, 8대 훅, 9개 카피 패턴, CTA, 템플릿 | content-planner |
-| `콘텐츠/VIRAL_GROWTH_PLAYBOOK.md` | 바이럴 삼각형, 논란 설계, 밈 생산성, 7개 케이스 스터디 | content-planner |
-| `콘텐츠/ZALPHA_CHARACTER_GUIDE.md` | Z/Alpha 세대 캐릭터 디자인 가이드 | — |
-
-### 개발 전략서
-
-| 파일 | 내용 |
-|------|------|
-| `개발/PERFORMANCE_OPTIMIZATION.md` | 웹 성능 최적화 — 캐시 4단계, 병렬화, HTTP 캐시, ErrorBoundary |
-| `개발/HARNESS_ENGINEERING.md` | Claude Code 하네스 엔지니어링 — 3중 방어, 컨텍스트 관리 |
-| `개발/CLAUDE_SETUP_STRATEGY.md` | .claude/ 폴더 구조 설계 — 레이어별 역할, 문서 작성법 |
-| `개발/TOKEN_OPTIMIZATION.md` | 토큰 절약 전략 — 세션 관리, .claudeignore, 서브에이전트 |
-| `개발/ONTOLOGY_GUIDE.md` | 온톨로지 설계 가이드 |
-| `개발/SECURITY.md` | 보안 가이드 |
+| Plugin | 역할 |
+|--------|------|
+| `vercel` | 배포, CLI, Functions, AI SDK, shadcn, React best practices 등 |
+| `supabase` | DB 관리, Edge Functions, 마이그레이션 |
+| `feature-dev` | 7단계 기능 개발 워크플로우 (탐색→설계→구현→리뷰) |
+| `pr-review-toolkit` | PR 코드 리뷰 (6개 전문 에이전트) |
+| `frontend-design` | 프리미엄 프론트엔드 생성 |
 
 ---
 
-## MCP Servers
+## docs/ (사람용 레퍼런스)
 
-| MCP | 설명 | API 키 필요 |
-|-----|------|------------|
-| **Firecrawl** | 웹 스크래핑 | O (`FIRECRAWL_API_KEY`) |
-| **Playwright** | 브라우저 자동화 (공식) | X |
-| **Playwriter** | 브라우저 자동화 (경량) | X |
-| **Apify** | 웹 크롤링/액터 실행 | O (`APIFY_TOKEN`) |
-| **Supabase** | DB 관리 | plugin 자동 (별도 설정 불필요) |
+Claude가 자동 탐색하지 않는 문서. 에이전트가 명시적 경로로 참조하거나, 사람이 직접 열람.
 
-설정 방법:
-```bash
-# mcp-servers.example.json을 참고해서 ~/.claude.json의 mcpServers에 추가
-# API 키는 각 서비스에서 발급 후 직접 입력
-```
-
-> API 키가 포함된 `~/.claude.json`은 **절대 git 커밋 금지.**
+| 카테고리 | 파일 | 내용 |
+|----------|------|------|
+| 개발 | `HOOKS_STRATEGY.md` | Hook 전략서 + 프로젝트별 적용 가이드 |
+| 개발 | `CLAUDE_SETUP_STRATEGY.md` | .claude/ 폴더 구조 설계 |
+| 개발 | `HARNESS_ENGINEERING.md` | 하네스 엔지니어링 방법론 |
+| 개발 | `TOKEN_OPTIMIZATION.md` | 토큰 절약 전략 |
+| 개발 | `PERFORMANCE_OPTIMIZATION.md` | 성능 최적화 확장판 (rules/ 보충) |
+| 개발 | `SECURITY.md` | 보안 가이드 확장판 (rules/ 보충) |
+| 개발 | `ONTOLOGY_GUIDE.md` | 온톨로지 설계 가이드 |
+| 비즈니스 | `UNIVERSAL_GROWTH_FORMULA.md` | 5단계 성장 엔진 (본능→훅→확산→전환→잠금) |
+| 비즈니스 | `AARRR_FUNNEL_STRATEGY.md` | AARRR 퍼널 설계 + 단계별 지표 |
+| 비즈니스 | `PM_FRAMEWORKS.md` | PM 프레임워크 8종 |
+| 마케팅 | `VIRAL_FEATURE_STRATEGY.md` | 바이럴 기능 설계 + 26개 케이스 스터디 |
+| 마케팅 | `SEO_전략서.md` | SEO 체크리스트 + 기술적/콘텐츠 SEO |
+| 마케팅 | `GA_전략서.md` | GA4 이벤트 설계 + 퍼널 분석 |
+| 콘텐츠 | `VIRAL_CONTENT_MAKING_STRATEGY.md` | 감정 설계, 8대 훅, 9개 카피 패턴 |
+| 콘텐츠 | `VIRAL_GROWTH_PLAYBOOK.md` | 바이럴 삼각형, 논란 설계, 밈 생산성 |
+| 콘텐츠 | `ZALPHA_CHARACTER_GUIDE.md` | Z/Alpha 세대 캐릭터 디자인 가이드 |
 
 ---
 
 ## Configuration
 
 ### settings.json
-글로벌 설정 — 플러그인 활성화, 환경변수, 훅 등록
+글로벌 설정 — hooks, 플러그인, 기본 모드
 
 ### settings.local.json
 기기별 로컬 설정 — MCP 서버 + API 키. **절대 git 커밋 금지.**
-
-### hooks/
-셸 스크립트 기반 자동 가드. `settings.json`의 `hooks` 필드에서 등록하고, `~/.claude/hooks/`에 스크립트 배치.
