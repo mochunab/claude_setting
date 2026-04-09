@@ -81,7 +81,8 @@
       "mcp__playwriter__execute",
       "mcp__playwriter__reset",
       "mcp__firecrawl__firecrawl_scrape",
-      "mcp__apify__search-actors"
+      "mcp__apify__search-actors",
+      "mcp__korean-law__*"
     ],
     "defaultMode": "acceptEdits"
   }

@@ -35,6 +35,10 @@
       "env": {
         "APIFY_TOKEN": "your-apify-token"
       }
+    },
+    "korean-law": {
+      "type": "url",
+      "url": "https://korean-law-mcp.fly.dev/sse?OC=your-law-api-key"
     }
   }
 }
