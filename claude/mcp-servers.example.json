@@ -37,8 +37,12 @@
       }
     },
     "korean-law": {
-      "type": "url",
-      "url": "https://korean-law-mcp.fly.dev/sse?OC=your-law-api-key"
+      "type": "stdio",
+      "command": "npx",
+      "args": ["-y", "korean-law-mcp"],
+      "env": {
+        "LAW_OC": "your-law-api-key"
+      }
     }
   }
 }
