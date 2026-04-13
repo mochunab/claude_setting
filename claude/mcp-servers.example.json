@@ -43,6 +43,11 @@
       "env": {
         "LAW_OC": "your-law-api-key"
       }
+    },
+    "serena": {
+      "type": "stdio",
+      "command": "uvx",
+      "args": ["--from", "git+https://github.com/oraios/serena", "serena", "start-mcp-server"]
     }
   }
 }

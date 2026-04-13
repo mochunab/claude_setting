@@ -82,7 +82,8 @@
       "mcp__playwriter__reset",
       "mcp__firecrawl__firecrawl_scrape",
       "mcp__apify__search-actors",
-      "mcp__korean-law__*"
+      "mcp__korean-law__*",
+      "mcp__plugin_serena_serena__*"
     ],
     "defaultMode": "acceptEdits"
   }
